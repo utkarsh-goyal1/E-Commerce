@@ -1,0 +1,23 @@
+<%- include('../products/partials/header') %>
+    <%- include('../products/partials/navbar') %>
+        <div class="d-flex justify-content-center my-5">
+            <div class="my-5 d-flex flex-column align-items-center border-2" style="width: 30%;">
+                <h3 class="mt-1">SignUp</h3>
+                <form class="form-control-sm" style="width: 100%;" action="/register" method="POST">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailhelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">SignUp</button>
+                </form>
+            </div>
+        </div>
+        <%- include('../products/partials/footer') %>
