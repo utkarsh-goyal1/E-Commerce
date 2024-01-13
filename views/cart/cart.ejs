@@ -1,0 +1,12 @@
+<%- include('../products/partials/header') %>
+    <%- include('../products/partials/navbar') %>
+
+        <ol class="list-group list-group-numbered">
+            <%for(let item of user.cart){%>
+                <li class="list-group-item">
+                    <%=item.name%>---><%=item.price%>
+                </li>
+
+                <%}%>
+        </ol>
+        <%- include('../products/partials/footer') %>

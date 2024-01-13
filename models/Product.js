@@ -25,7 +25,11 @@ let productSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,//it will store the object ids of all the reviews related to that particular product.
             ref: 'Review'
         }
-    ]
+    ],
+    author:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 });
 
 
