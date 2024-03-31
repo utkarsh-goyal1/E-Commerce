@@ -33,8 +33,11 @@ app.use(methodOverride('_method'))//method override
 
 let configSession = {
     secret: 'keyboard cat',
+    // When a session is created or modified during a request, the express-session middleware typically saves the session data back to the session store at
+    // the end of the request-response cycle. This process ensures that any changes made to the session (such as adding or modifying session variables) are persisted.
+    // the resave option determines whether the session should be saved back to the session store, even if the session data hasn't been modified during the request.
     resave: false,
-    saveUninitialized: true, // Correct spelling
+    saveUninitialized: true, // This property indicates whether to save new, uninitialized sessions. Setting it to true means that the session will be saved even if it is new .
     cookie: {
         httpOnly: true,
         expires: Date.now() + 24 * 7 * 60 * 60 * 1000,//used to create sessions of a user
@@ -45,8 +48,9 @@ app.use(session(configSession));
 app.use(flash())
 
 //5 things that we need to use before using passport
-app.use(passport.initialize())//we require to initialize the passport before its using
+app.use(passport.initialize())//we require to initialize the passport before its using.
 app.use(passport.session())//to store the user locally 
+
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;//Store the current user details in locals object so that we can access the user anywhere.
     res.locals.success = req.flash('success')//req.flash() function, allowing you to create and retrieve flash messages.

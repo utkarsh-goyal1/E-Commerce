@@ -51,12 +51,13 @@ router.post('/login',
 //     res.redirect('/login')
 // })
 router.get('/logout', (req, res) => {
-    console.log(req.user);
+    // console.log(req.user);
     req.logout((err) => { // Add the callback function
         if (err) {
             console.error(err);
             // Handle any errors during logout
         } else {
+            req.flash('success', 'Good Bye');
             // console.log("Hello",req.user);when the user logout then req.user also get null.
             res.redirect('/login'); // Safe to redirect after successful logout
         }

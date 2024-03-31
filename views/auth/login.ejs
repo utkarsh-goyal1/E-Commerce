@@ -1,21 +1,22 @@
 <%- include('../products/partials/header') %>
     <%- include('../products/partials/navbar') %>
-        <div class="d-flex justify-content-center my-5">
-            <div class="my-5 d-flex flex-column align-items-center border-2" style="width: 30%;">
-                <h3 class="mt-1">Login</h3>
-                <form class="form-control-sm" style="width: 100%;" action="/login" method="POST">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username"
-                            aria-describedby="emailhelp">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <p>Don't have an account ? <a href="/register">Signup</a></p>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
+        <%- include('../products/partials/flash') %>
+            <div class="d-flex justify-content-center my-5">
+                <div class="my-5 d-flex flex-column align-items-center border-2" style="width: 30%;">
+                    <h3 class="mt-1">Login</h3>
+                    <form class="form-control-sm" style="width: 100%;" action="/login" method="POST">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                aria-describedby="emailhelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                        <p>Don't have an account ? <a href="/register">Signup</a></p>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
             </div>
-        </div>
-        <%- include('../products/partials/footer') %>
+            <%- include('../products/partials/footer') %>

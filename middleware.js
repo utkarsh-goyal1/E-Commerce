@@ -28,7 +28,7 @@ const isLoggedIn = (req, res, next) => {
     next();
 }
 const isSeller = (req, res, next) => {
-    if (!req.user.Role) {
+    if (!req.user.Role) {//If the user does not have any role.
         req.flash('error', 'You need permission to access the content')
         return res.redirect('/products');
     }

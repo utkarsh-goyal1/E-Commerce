@@ -31,10 +31,8 @@ let productSchema = new mongoose.Schema({
         ref: 'User'
     }
 });
-
-
-
-//middleware jo behind the scene mongodb ke operations karwane main use hote hain and iske andar pre aur post middleware hote hain which are basically used over schema
+//When we use mongodb functions like findByIdAndDelete then internally a middleware is called like findOneAndDelete which is responsible to perform that function.
+// and iske andar pre aur post middleware functions hote hain which are basically used over schema.
 //and before the model.
 // creating model
 productSchema.post('findOneAndDelete', async function (product) {

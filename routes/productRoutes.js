@@ -3,12 +3,12 @@ const Product = require('../models/Product');
 const router = express.Router(); //mini instance/application;
 const Review = require('../models/Review');
 const { validateProduct } = require('../middleware')
-const { isLoggedIn, isSeller ,isProductAuthor} = require('../middleware')
+const { isLoggedIn, isSeller, isProductAuthor } = require('../middleware')
 // READ
 router.get('/products', isLoggedIn, async (req, res) => {
     try {
         let allProducts = await Product.find();
-        res.render('products/index', { allProducts })
+        res.render('products/index', { allProducts })//it is used to render a view template.
     }
     catch (e) {
         res.status(500).render('error', { err: e.message })//error is a ejs file
@@ -46,7 +46,7 @@ router.get('/products/:id', isLoggedIn, async (req, res) => {
     try {
         let { id } = req.params;
         let foundProduct = await Product.findById(id).populate('reviews');// Populate helps in linking documents in different collections and retrieving related data in a more convenient manner.
-        res.render('products/show', { foundProduct, msg: req.flash('msg') })
+        res.render('products/show', { foundProduct })
     }
     catch (e) {
         res.status(500).render('error', { err: e.message })
@@ -55,13 +55,12 @@ router.get('/products/:id', isLoggedIn, async (req, res) => {
 })
 
 // FORM TO EDIT A PARTIICULAR PRODUCT
-router.get('/products/:id/edit', isLoggedIn, isSeller,isProductAuthor, async (req, res) => {
+router.get('/products/:id/edit', isLoggedIn, isSeller, isProductAuthor, async (req, res) => {
     try {
-        console.log(req.params);
-
+        // console.log(req.params);
         let { id } = req.params;
         let foundProduct = await Product.findById(id);
-        console.log("message", foundProduct)
+        // console.log("message", foundProduct)
         res.render('products/edit', { foundProduct })
     }
     catch (e) {
@@ -77,7 +76,7 @@ router.patch('/products/:id', isLoggedIn, async (req, res) => {
         let { name, img, price, desc } = req.body;
         await Product.findByIdAndUpdate(id, { name, img, price, desc });
         req.flash('success', 'Product edited successfully')
-        res.redirect('/products/');
+        res.redirect('/products');
     }
     catch (e) {
         res.status(500).render('error', { err: e.message })
@@ -85,7 +84,7 @@ router.patch('/products/:id', isLoggedIn, async (req, res) => {
 })
 
 // DELETE THE EXISTING PRODUCT
-router.delete('/products/:id', isLoggedIn, isSeller,isProductAuthor, async (req, res) => {
+router.delete('/products/:id', isLoggedIn, isSeller, isProductAuthor, async (req, res) => {
     try {
         let { id } = req.params;
         let product = await Product.findById(id)
@@ -103,5 +102,5 @@ router.delete('/products/:id', isLoggedIn, isSeller,isProductAuthor, async (req,
 })
 
 
-// export so that you can use it in app.ja
+// export so that you can use it in app.js
 module.exports = router;
