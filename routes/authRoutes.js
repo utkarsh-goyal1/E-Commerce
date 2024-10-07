@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/login',
-    // The passport.authenticate() function is a middleware provided by Passport
+    // The passport.authenticate() function is a middleware provided by Passport which will authenticate the user behind the scenes.
     passport.authenticate('local',//Here local explains that we are using local strategy.
         {
             failureRedirect: '/login'

@@ -1,6 +1,6 @@
-<%- include('./partials/header') %>
-    <%- include('./partials/navbar') %>
-        <%- include('./partials/flash') %>
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
+        <%- include('../partials/flash') %>
 
 
             <div class="row">
@@ -31,7 +31,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-6">
                         <div class="col-lg-4 mt-5">
                             <h2 class="display-5">Leave your review</h2>
@@ -66,7 +65,7 @@
                                 <div>
                                     <h3>Ratings</h3>
                                     <p class="starability-result" data-rating=<%=review.rating %>>
-                                        Rated: 3 stars
+                                        Rated: <%=review.rating %>
                                     </p>
                                     <p>Comment:<%=review.comment%>
                                     </p>
@@ -84,6 +83,6 @@
                     </div>
                 </div>
             </div>
-            <%- include('./partials/footer') %>
+            <%- include('../partials/footer') %>
                 <!-- To show the star ratings we used starability library.We took the starability css from library and paste it in public folder inside the file named star.css.After that add its path or link to our boilerplate which is placed in the header file inside views folder-->
                 <!-- After the above steps copy the code from the website and paste in the show page.to show the static results (star ratings) on each product we copy code of that and paste inside the review cards above(63 to 66)-->

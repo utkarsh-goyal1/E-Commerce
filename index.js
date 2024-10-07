@@ -49,7 +49,8 @@ app.use(flash())
 
 //5 things that we need to use before using passport
 app.use(passport.initialize())//we require to initialize the passport before its using.
-app.use(passport.session())//to store the user locally 
+app.use(passport.session())//to store the user locally. The app.use(passport.session()) middleware in an Express application is used to 
+                           //maintain persistent login sessions across requests. 
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;//Store the current user details in locals object so that we can access the user anywhere.
@@ -85,3 +86,19 @@ app.listen(PORT, () => {
 
 //In the context of frameworks like Express.js or Mongoose (which interfaces with MongoDB), middleware functions are functions that have access to the request object (req),
 // the response object (res), and the next function in the application’s request-response cycle.
+
+
+// How Login is done using passport-------------------------
+// User Authentication Flow:
+
+// Login: When a user successfully logs in, passport.authenticate() calls req.login(), which in turn calls serializeUser() to store user 
+// information in the session.
+// Note - If we loged in the user and we are not authenticating user on each request or not maintaining the user loged in state 
+//        then it might happen that user shares the url with another person and that person will also use our website.
+//        So we should authenticate the user on each request but it is not a good way to login the user on each request. 
+//        So we use "'passport.session()'" middleware. This helps in remembering the user.
+//        So when a user is loged in then passport calls serializeUser() to store user's information in the session.
+// Subsequent Requests: On each new request, passport.session() checks if a user ID is stored in the session. If so, it calls 
+// deserializeUser() to retrieve the full user object and attaches it to req.user.After that isAuthenticated() method (used in isloggedin
+// middleware) checks if the user is present in the request object. if yes then give access to the user.
+// Logout: When a user logs out using req.logout(), Passport removes the user data from the session.

@@ -1,9 +1,10 @@
-<%- include('./partials/header') %>
-    <%- include('./partials/navbar') %>
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
 
 
         <div class="row margin-form">
             <div class="col-6 mx-auto" style="margin-top: 25px;">
+                <!-- novalidate is used to remove default validation like we use required -->
                 <form action="/products" method="POST" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="naam" class="form-label">Name: </label>
@@ -85,7 +86,7 @@
             })()//calling function without any name  // Immediately invoked functional expressions(iife)
         </script>
 
-        <%- include('./partials/footer') %>
+        <%- include('../partials/footer') %>
 
 <!-- 
 //required in input field is used for client side validation. When client not fill any field in the form then the form will not submit.But required 

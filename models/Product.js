@@ -31,10 +31,15 @@ let productSchema = new mongoose.Schema({
         ref: 'User'
     }
 });
-//When we use mongodb functions like findByIdAndDelete then internally a middleware is called like findOneAndDelete which is responsible to perform that function.
-// and iske andar pre aur post middleware functions hote hain which are basically used over schema.
-//and before the model.
-// creating model
+//When we use mongodb functions like findByIdAndDelete then  Mongoose internally uses a more generalized operation, such as findOneAndDelete() 
+// which is responsible to perform that function.
+// Pre Middleware (pre): Mongoose allows you to define middleware functions that will run before the main MongoDB operation. 
+// For example, a pre('findOneAndDelete') middleware will run before the document is actually deleted.
+// Post Middleware (post): Similarly, you can have middleware that runs after the main operation. For example, a post('findOneAndDelete')
+//  middleware would execute after the deletion is complete.
+// These middleware functions (both pre and post) are defined over a Mongoose schema. This means that they apply to all operations 
+// related to that schema.
+
 productSchema.post('findOneAndDelete', async function (product) {
     if (product.reviews.length > 0) {
         await Review.deleteMany({ _id: { $in: product.reviews } })

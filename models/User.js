@@ -16,7 +16,6 @@ let userSchema = new mongoose.Schema({
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:'Product'
-
         }
     ],
     wishlist:[
@@ -27,7 +26,10 @@ let userSchema = new mongoose.Schema({
     ]
 });
 
-userSchema.plugin(passportLocalMongoose)//we have to use the plugin to use the passportLocalMongoose
+userSchema.plugin(passportLocalMongoose)//we have to use the plugin to use the passportLocalMongoose. This plugin simplifies the process 
+                                        //of setting up user authentication with Passport by automatically adding functionality for hashing 
+                                        //and salting passwords, handling user serialization, and managing authentication.
+
 // creating model
 let User = mongoose.model('User', userSchema)
 
